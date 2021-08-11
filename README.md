@@ -12,11 +12,11 @@ Para levantar el proyecto local:
 
 1. Descarga del repo
 
-2. Instalar módulos en el /
+2. Instalar módulos en el /ejs
 
     ```
     npm i
     ```
   
 ### Levantar Website
-Una vez instalados los modulos, levantar el website con los comandos node app.js o nodemon app.js en la carpeta /
+Una vez instalados los modulos, levantar el website con los comandos node app.js o nodemon app.js en la carpeta /ejs
