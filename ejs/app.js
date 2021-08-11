@@ -3,6 +3,7 @@ const path = require('path');
 const { forEach } = require('./utils/dataSite.js');
 const dataSite = require('./utils/dataSite.js');
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -209,6 +210,6 @@ app.get('/consulta/:id', (req, res)=>{
     }
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
 });
