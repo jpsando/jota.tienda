@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./../partials/metadata', {template: template}) %>
+</head>
+<body>
+    <%- include('./../partials/header') %>
+    <main class="main">
+        <!-- INI CONTENT PRODUCT -->
+        <article class="product__content">
+            <div class="container">
+                <% if (productTitle) { %>
+                <h1 class="product__title"><%=productTitle%></h1>
+                <% } %>
+                <div class="row">
+                    <div class="col-md-8">
+                        <%
+                        if(productImages.length < 2){
+                        %>
+                        <figure class="product__figure">
+                            <img src="<%=productImages[0]%>" alt="Imagen producto">
+                        </figure>
+                        <%
+                        }else{
+                        %>
+                        <div id="carouselProduct" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <%
+                                for (let i = 0; i < productImages.length; i++) { 
+                                %>
+                                <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                                    <figure class="product__figure">
+                                        <img src="<%=productImages[i]%>" alt="<%=productTitle%>">
+                                    </figure>
+                                </div>
+                                <%
+                                }
+                                %>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
+                        </div>
+                        <%
+                        }
+                        %>
+
+                    </div>  
+                    <div class="col-md-4">
+                      <div class="product__data">
+                          <% if (productDescription) { %>
+                          <p class="product__description"><%=productDescription%></p>
+                          <% } %>
+                          <% if (productInfo) { %>
+                          <p class="product__info"><%=productInfo%></p>
+                          <% } %>
+                          <% if (productDate) { %>
+                          <p class="product__date"><%=productDate%></p>
+                          <% } %>
+                          <% if (productSize) { %>
+                          <p class="product__size"><%=productSize%></p>
+                          <% } %>
+                      </div>
+                      <div class="product__order">
+                          <a href="/consulta/<%=productId%>" title="Ir a consultar" class="btn__green">¡Lo quiero!</a>
+                      </div>
+                    </div>  
+                </div>
+            </div>
+        </article>
+        <!-- FIN CONTENT PRODUCT -->
+        <!-- INI MODULE PORTFOLIO -->
+        <section class="module__portfolio d-flex align-items-center">
+            <a href="http://www.jotaschneider.com" title="Ir al Portfolio de Jota Schneider" class="btn__white">Portfolio</a>
+        </section>
+        <!-- END MODULE PORTFOLIO -->
+    </main>
+    <%- include('./../partials/footer') %>
+</body>
+</html>

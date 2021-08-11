@@ -1,0 +1,23 @@
+.product__content{
+    margin: 20px 0;
+}
+#carouselProduct,
+.product__figure{
+    max-width: 750px;
+}
+.product__figure img{
+    width: 100%;
+    height: auto;
+}
+.carousel-control-prev {
+    left: -27px;
+}
+.carousel-control-next {
+    right: -27px;
+}
+@media (max-width: 767px){
+    .carousel-control-prev,
+    .carousel-control-next{
+        display:none;
+    }
+}

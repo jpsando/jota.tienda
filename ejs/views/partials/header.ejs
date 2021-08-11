@@ -1,0 +1,25 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/" title="Ir al Inicio">
+              <img src="/img/logo.png" alt="Jota Schneider Tienda">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <%
+              for (let i = 0; i < navigator.length; i++) {
+              %>
+              <li class="nav-item">
+                <a class="nav-link <%= navigator[i].class %>" href="<%= navigator[i].href %>" title="Ir a <%= navigator[i].name %>"><%= navigator[i].name %></a>
+              </li>
+              <%
+              }
+              %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>

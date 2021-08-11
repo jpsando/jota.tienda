@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./partials/metadata') %>
+</head>
+<body>
+    <%- include('./partials/header') %>
+    <main class="main">
+        <!-- INI MODULE PRESENTATION-->
+        <section class="module__presentation">
+            <div class="container">
+                <div class="row">
+                    <div class="presentation__video">
+                        <video width="1200" height="500" loop autoplay muted id="video">
+                            <source src="<%=home.featuredModule.featuredVideo%>" type="video/mp4">
+                          Your browser does not support the video tag.
+                          </video>
+                          <script>
+                            document.getElementById('video').play();
+                        </script>
+                        <!-- <img src="img/home-central.jpg" alt="Video">-->
+                    </div>
+                    <div class="presentation__txt">
+                        <blockquote>
+                            <p><%=home.featuredModule.quoteText%></p>
+                            <span><%=home.featuredModule.quoteAuthor%></span>
+                        </blockquote>
+                        <p><%-home.featuredModule.featuredText%></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE PRESENTATION-->
+        <!-- INI MODULE PAPEL-->
+        <section class="module__section module__papel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 module__section--info">
+                        <img src="<%=home.papelModule.icon%>" alt="Icono Papel" class="section__icon">
+                        <h2 class="section__title"><%=home.papelModule.title%></h2>
+                        <p class="section__txt"><%=home.papelModule.text%></p>
+                        <a href="<%=home.papelModule.link%>" title="Ir a ver todos" class="btn__green">Ver Todos</a>
+                    </div>
+                    <div class="col-xl-8 module__list">
+                        <div id="carouselPapel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <%
+                                for (let i = 0; i < 6; i++) { 
+                                    if(i == 0 || i == 3 ){
+                                %>
+                                <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                                    <div class="row">
+                                <%
+                                    }
+                                    if ( productsPapelHome[i] ){
+                                %>
+                                        <div class="col-4">
+                                            <a href="/<%= productsPapelHome[i].category %>/<%= productsPapelHome[i].id %>" title="<%= productsPapelHome[i].name %>">
+                                                <img src="<%= productsPapelHome[i].imageHome %>" class="d-block w-100" alt="<%= productsPapelHome[i].description %>">
+                                            </a>
+                                        </div>
+                                <%
+                                    }
+                                    if(i == 2 || i == 5){
+                                %>
+                                    </div>
+                                </div>
+                                <%
+                                    }
+                                } 
+                                %>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPapel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselPapel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE PAPEL-->
+        <!-- INI MODULE TEXTIL-->
+        <section class="module__section module__textil">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 module__list">
+                        <div class="row">
+                            <%
+                            for (let i = 0; i < 6; i++) { 
+                                if ( productsTextilHome[i] ){
+                            %>
+                            <div class="col-md-4">
+                                <a href="/<%= productsTextilHome[i].category %>/<%= productsTextilHome[i].id %>" title="<%= productsTextilHome[i].name %>">
+                                    <img src="<%= productsTextilHome[i].imageHome %>" alt="<%= productsTextilHome[i].description %>">
+                                </a>
+                            </div>
+                            <%
+                                }
+                            }
+                            %>
+                        </div>
+                    </div>
+                    <div class="col-md-5 module__section--info">
+                        <img src="<%=home.textilModule.icon%>" alt="Icono Papel" class="section__icon">
+                        <h2 class="section__title"><%=home.textilModule.title%></h2>
+                        <p class="section__txt"><%=home.textilModule.text%><p>
+                        <a href="<%=home.textilModule.link%>" title="Ir a ver todos" class="btn__green">Ver Todos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE TEXTIL-->
+        <!-- INI MODULE DIGITAL-->
+        <section class="module__section module__digital">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 module__section--info">
+                        <img src="<%=home.digitalModule.icon%>" alt="Icono Digital" class="section__icon">
+                        <h2 class="section__title"><%=home.digitalModule.title%></h2>
+                        <p class="section__txt"><%=home.digitalModule.text%></p>
+                        <a href="<%=home.digitalModule.link%>" title="Ir a ver todos" class="btn__green">Ver Todos</a>
+                    </div>
+                    <div class="col-xl-8 module__list">
+                        <div id="carouselDigital" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <%
+                                for (let i = 0; i < 6; i++) { 
+                                    if(i == 0 || i == 3 ){
+                                %>
+                                <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                                    <div class="row">
+                                <%
+                                    }
+                                    if ( productsDigitalHome[i] ){
+                                %>
+                                        <div class="col-4">
+                                            <a href="/<%= productsDigitalHome[i].category %>/<%= productsDigitalHome[i].id %>" title="<%= productsDigitalHome[i].name %>">
+                                                <img src="<%= productsDigitalHome[i].imageHome %>" class="d-block w-100" alt="<%= productsDigitalHome[i].description %>">
+                                            </a>
+                                        </div>
+                                <%
+                                    }
+                                    if(i == 2 || i == 5){
+                                %>
+                                    </div>
+                                </div>
+                                <%
+                                    }
+                                } 
+                                %>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDigital" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselDigital" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE DIGITAL-->
+        <!-- INI MODULE EXTERNOS-->
+        <section class="module__externos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 module__externos--imagen">
+                        <img src="<%=home.externosModule.image%>" alt="Puedes encontrar más productos en las tiendas externas">
+                    </div>
+                    <div class="col-xl-6 module__externos--info d-flex align-items-center">
+                        <div class="module__externos--info--content">
+                            <img src="img/banner-externos-icono.jpg" alt="Tiendas Externas" class="section__icon">
+                            <p class="module__externos--txt"><%=home.externosModule.text%></p>
+                            <a href="<%=home.externosModule.linksExternos[0].link%>" target="_blank" rel="nofollow" title="Ir a la tienda de Jota Scheider en Society6" class="btn__white">Tienda <%=home.externosModule.linksExternos[0].name%></a>
+                            <a href="<%=home.externosModule.linksExternos[1].link%>" target="_blank" rel="nofollow" title="Ir a la tienda de Jota Scheider en Flashcookie" class="btn__white">Tienda <%=home.externosModule.linksExternos[1].name%></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE EXTERNOS -->
+        <!-- INI MODULE PORTFOLIO -->
+        <section class="module__portfolio d-flex align-items-center">
+            <a href="https://www.jotaschneider.com" title="Ir al Portfolio de Jota Schneider" class="btn__white">Portfolio</a>
+        </section>
+        <!-- END MODULE PORTFOLIO -->
+        <!-- INI MODULE NEWSLETTER -->
+        <section class="module__newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="img/banner-newsletter-icono.jpg" alt="Icono Newsleter" class="section__icon">
+                        <h3>¿Querés recibir novedades?</h3>
+                        <p>Prometo no ser un SPAM :)</p>
+                    </div>
+                    <div class="col-lg-6 align-items-end d-flex">
+                        <form action="#" class="newsletter__form d-flex">
+                            <div class="col-9">
+                                <input type="email" name="email" id="email" placeholder="Compartíme tu dirección de mail" class="form__input">
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn__green">YEAH!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END MODULE NEWSLETTER -->
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>

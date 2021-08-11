@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./../partials/metadata', {template: template}) %>
+</head>
+<body>
+    <%- include('./../partials/header') %>
+    <section class="main">
+        <!-- INI HEADER SECTION-->
+        <header class="section__header">
+            <div class="container">
+                <div class="row">
+                    <div class="section__header--iamgen">
+                        <video width="1200" height="500" loop autoplay muted id="video">
+                            <source src="video/home.mp4" type="video/mp4">
+                          Your browser does not support the video tag.
+                          </video>
+                          <script>
+                            document.getElementById('video').play();
+                        </script>
+                        <!-- <img src="img/home-central.jpg" alt="Video">-->
+                    </div>
+                    <div class="section__header--info">
+                        <img src="img/<%-page%>/icono.jpg" alt="Icono Papel" class="section__icon">
+                        <h2 class="section__title"><%= sectionTitle %></h2>
+                        <p class="section__txt"><%= sectionDescription %></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- FIN HEADER SECTION-->
+        <!-- INI CONTENT SECTION -->
+        <div class="section__content">
+            <div class="container">
+                <div class="row">
+                        <%
+                        for (let i = 0; i < products.length; i++) { 
+                        %>
+                        <article class="col-md-3 product">
+                            <figure class="product__figure">
+                                <a href="/<%= products[i].category %>/<%= products[i].id %>" title="<%= products[i].name %>">
+                                    <img src="<%= products[i].imageSumario %>" class="d-block w-100" alt="<%= products[i].name %>">
+                                </a>
+                            </figure>
+                            <h1 class="product__title">
+                                <a href="/<%= products[i].category %>/<%= products[i].id %>" title="<%= products[i].name %>">
+                                    <%= products[i].name %>
+                                </a>
+                            </h1>
+                            <p class="product__info"><%= products[i].size %></p>
+                        </article>
+                        <%
+                        }
+                        %>
+                </div>
+            </div>
+        </div>
+        <!-- FIN CONTENT SECTION -->
+    </section>
+    <!-- INI MODULE PORTFOLIO -->
+    <section class="module__portfolio d-flex align-items-center">
+        <a href="http://www.jotaschneider.com" title="Ir al Portfolio de Jota Schneider" class="btn__white">Portfolio</a>
+    </section>
+    <!-- END MODULE PORTFOLIO -->
+    <%- include('./../partials/footer') %>
+</body>
+</html>

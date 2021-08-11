@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./../partials/metadata', {template: template}) %>
+</head>
+<body>
+    <%- include('./../partials/header') %>
+    <main class="main">
+        <section class="consult__content">
+            <div class="container">
+                <div class="row">
+                    <p>Para obtener la obra <b><%=productName %></b> envianos una consulta a <a href="mailto:hola@jotaschneider.com">hola@jotaschneider.com</a> o completa el siguiente formulario:</p>
+                    <form action="send" class="consult--form" id="contactform" method="POST" enctype="multipart/form-data">
+                        <label for="" class="consult--form__label">
+                            <span>Nombre y apellido</span>
+                            <input type="text" name="name" class="form--input" required />
+                        </label>
+                        <label for="" class="consult--form__label">
+                            <span>Teléfono</span>
+                            <input type="tel" name="phone" class="form--input" required />
+                        </label>
+                        <label for="" class="consult--form__label">
+                            <span>Email</span>
+                            <input type="email" name="email" class="form--input" required />
+                        </label>
+                        <label for="" class="consult--form__label label__comentarios">
+                            <span>Consulta</span>
+                            <textarea name="consult" class="form--input"></textarea>
+                        </label>
+                        <label for="" class="consult--form__label label__obra">
+                            <span>Obra seleccionada: <br><%=productName %></span>
+                            <figure class="consult--product__image">
+                                <img src="<%=productImage %>" />
+                            </figure>
+                            <input type="hidden" name="productId" value="<%=productId %>" />
+                            <input type="hidden" name="productName" value="<%=productName %>" />
+                            <input type="hidden" name="productImage" value="<%=productImage %>" />
+                        </label>
+                        <div class="consult--product__button">
+                            <button type="submit" value="submit" class="btn__green">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%- include('./../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,441 @@
+/*
+Globales
+*/
+body{
+    font: 17px/24px 'Domine', serif;
+    color: #404041;
+}
+.main{
+    overflow: hidden;
+    width: 100%;
+}
+.container-fluid{
+    padding: 0;
+}
+.btn__green{
+    display:block;
+    font-size: 18px;
+    line-height: 50px;
+    text-decoration: none;
+    color: white;
+    background-color: #20c5a6;
+    text-align: center;
+    max-width: 216px;
+    height: 50px;
+    border: none;
+    transition: background-color .4s;
+}
+.btn__green:hover{
+    background-color: #404041;
+    color: white;
+}
+.btn__white{
+    display:inline-block;
+    font-size: 18px;
+    line-height: 50px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    text-align: center;
+    max-width: 238px;
+    height: 50px;
+    border: none;
+    transition: background-color .4s;
+}
+.btn__white:hover{
+    background-color: #404041;
+    color: white;
+}
+.form__input{
+    border: none;
+    background-color: #f2f2f3;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    color: #404041;
+    font-size: 16px;
+    padding:0 0 0 16px;
+}
+/*
+Nav y Header
+*/
+.navbar,
+.header{
+    background-color: white;
+}
+.header{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+.navbar{
+    padding-top: 45px;
+    padding-bottom: 36px;
+}
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.nav-link{
+    font: 20px/20px 'Domine', serif;
+    color: #404041;
+}
+.nav-link:hover{
+    color: rgba(64,64,65,0);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.nav-link-papel:hover{
+    background-image: url(../img/nav/papel.jpg);
+}
+.nav-link-textil:hover{
+    background-image: url(../img/nav/textil.jpg);
+}
+.nav-link-digital:hover{
+    background-image: url(../img/nav/digital.jpg);
+}
+.nav-link-portfolio:hover{
+    background-image: url(../img/nav/portfolio.jpg);
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/*
+Modulo Presentation
+*/
+.presentation__txt{
+    padding: 55px 65px 60px;
+    text-align: center;
+    position: relative;
+}
+.presentation__txt:after{
+    content:"";
+    background-image: url(../img/home-central-divisor.jpg);
+    width: 100%;
+    max-width:526px;
+    height:34px;
+    position:absolute;
+    bottom: 0;
+    left:50%;
+    transform: translateX(-50%);
+    display: block;
+}
+.presentation__txt blockquote{
+    padding-bottom: 30px;
+}
+.presentation__txt blockquote p {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 8px;
+}
+.presentation__txt blockquote span{
+    font-size: 15px;
+    line-height: 15px;
+} 
+.presentation__txt > p a{
+    color: #00c3a1;
+    text-decoration: none;
+}
+.presentation__txt > p a:hover{
+    text-decoration: underline;
+}
+.presentation__video *{
+    width:100%;
+    height: auto;
+}
+
+/*
+Modulos seccion
+*/
+.module__section--info{
+    padding-right: 85px;
+}
+.module__section--info p{
+    line-height: 27px;
+}
+.section__title{
+    font-size: 40px;
+    line-height: 40px;
+    margin-top: 40px;
+}
+.module__list a {
+    display: inline-block;
+    width: 100%;
+}
+.module__list a img{
+    transition: opacity .4s;
+    width:100%;
+}
+.module__list a:hover img{ 
+    opacity: 0.8;
+}
+/*
+Carousell Seccion
+*/
+.carousel-control-prev{
+    left: -100px;
+    filter: brightness(0);
+}
+.carousel-control-next{
+    right: -100px;
+    filter: brightness(0);
+}
+/*
+Modulo Seccion Papel
+*/
+.module__papel{
+    padding-top: 80px;
+}
+.module__papel .section__txt{
+    margin-bottom: 70px;
+}
+/*
+Modulo Seccion Textil
+*/
+.module__textil{
+    margin-top: 109px;
+    padding: 83px 0;
+    background-color: #f2f2f3;
+}
+.module__textil .col-md-7 .row{
+    margin: 0 -4px;
+}
+.module__textil .col-md-4 + .col-md-4 + .col-md-4 + .col-md-4{
+    margin-top: 8px;
+}
+.module__textil .col-md-7 .col-md-4{
+    padding: 0 4px;
+}
+.module__textil .module__section--info{
+    padding: 60px 0 0 90px;
+}
+/*
+Modulo Digital
+*/
+.module__digital{
+    margin-top: 107px;
+}
+/*
+Modulo Digital
+*/
+.module__externos{
+    margin-top: 110px;
+}
+.module__externos .module__externos--imagen img{
+    width:100%;
+}
+.module__externos--info{
+    background-color: #20c5a6;
+    text-align: center;
+    padding: 40px 0 50px;
+}
+.module__externos--info--content{
+    max-width: 275px;
+    margin: 0 auto ;
+}
+.module__externos--txt{
+    font-size: 18px;
+    line-height: 27px;
+    color: #050000;
+    margin: 25px 0 30px;
+}
+.module__externos--info .btn__white{
+    display: block;
+    margin: 18px auto 0;
+}
+/*
+Module Portfolio
+*/
+.module__portfolio{
+    margin-top: 75px;
+    background-image: url(../img/banner-portfolio-foto.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 486px;
+    background-position: center;
+}
+.module__portfolio .btn__white{
+    margin: 0 auto;
+    width: 185px;
+}
+/*
+Modulo Newsletter
+*/
+.module__newsletter{
+    padding: 80px 0 85px;
+}
+.module__newsletter h3{
+    margin-top: 28px;
+    font-size: 30px;
+    line-height: 38px;
+}
+.module__newsletter p{
+    margin: 10px 0 0;
+}
+.newsletter__form,
+.newsletter__form .btn__green{
+    width: 100%;
+}
+.newsletter__form .col-9{
+    padding-right: 11px;
+}  
+/*
+Footer
+*/ 
+.footer{
+    background-color: #404041;
+    color:white;
+    padding: 70px 0 60px;
+}
+.footer__copy{
+    font-size: 15px;
+}
+.footer__social{
+    list-style: none;
+    justify-content: flex-end;
+}
+.footer__social li{
+    margin-left: 23px;
+}
+.footer__social a{
+    display: block;
+    background-color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 100%;
+    text-align: center;
+    line-height:42px;
+    transition: opacity .4s;
+}
+.footer__social a:hover{
+    opacity: 0.8;
+}
+.footer__social svg{
+    fill: #404041;
+    height: 21px;
+    width: auto;
+}
+/*
+Media queries
+*/
+@media (min-width: 1400px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1224px;
+    }
+}
+@media (min-width: 1200px){
+    .module__textil .col-md-7{
+        width: 61.15%;
+    }
+    .module__textil .col-md-5{
+        width: 38.85%;
+    }
+    
+}
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding: 22px 45px;
+    }
+    .nav-item:last-child .nav-link{
+        padding-right: 0;
+    }
+}
+@media (max-width: 1200px){
+    .module__externos--imagen,
+    .module__section--info{
+        padding: 0;
+    }
+    .module__list{
+        margin-top: 40px;
+        padding: 0;
+    }
+}
+@media (max-width: 992px){
+    .section__title{
+        display: inline-block;
+        margin: 14px 0 0 17px;
+        vertical-align: top;
+    }
+    .section__icon{
+        display:inline-block;
+        vertical-align: top;
+    }
+    .module__textil .module__section--info{
+        padding: 0 0 0  20px;
+    }
+    .module__textil{
+        margin-top: 40px;
+        padding: 40px 0;
+    }
+    .module__textil .module__list{
+        margin: 0;
+    }
+    .module__digital .section__txt,
+    .module__textil .section__txt,
+    .module__papel .section__txt{
+        margin:30px 0;
+    }
+    .module__digital{
+        margin-top: 40px;
+    }
+}
+@media (max-width: 767px){
+    .navbar{
+        padding: 10px 0;
+    }
+    .navbar-brand img{
+        max-width: 220px;
+    }
+    .nav-link:hover{
+        background-image: none;
+    }
+    .presentation__video{
+        padding:0;
+    }
+    .module__textil .module__section--info{
+        padding: 0 0;
+    }
+    .module__textil{
+        margin-top: 50px;
+    }
+    .module__textil .row{
+        flex-direction: column-reverse;
+    }
+    .module__newsletter p{
+        margin: 20px 0 25px;
+    }
+    .module__papel,
+    .module__digital,
+    .module__textil{
+        padding-right:12px;
+        padding-left:12px;
+    }
+    .module__textil .col-md-4{
+        margin-top:10px;
+    }
+    .carousel-item .col-4{
+        padding: 0 4px;
+    }
+    .navbar-collapse{
+        padding-bottom: 100%;
+        padding-top: 50px;
+    }
+    .navbar-nav .nav-link{
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 580px){
+    .module__textil{
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+    .module__externos {
+        margin-top: 70px;
+    }
+    .module__portfolio{
+        margin-top: 0;
+        height: 400px;
+    }
+}

@@ -1,0 +1,72 @@
+.consult__content{
+    padding-bottom: 60px;
+}
+.consult__content p{
+    text-align: center;
+    max-width: 759px;
+    margin: 20px auto 60px;
+}
+
+.consult__content p a{
+    color: #20c5a6;
+    text-decoration: none;
+}
+.consult--form{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.consult--form__label{
+    display: block;
+    position: relative;
+    margin-bottom:10px;
+}
+.consult--form__label span{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left;
+    pointer-events: none;
+    transition: all .2s;
+}
+.consult--form__label.label__comentarios span.active,
+.consult--form__label span.active{
+    transform: scale(.55);
+    top: -2px;
+}
+.consult--form__label.label__comentarios span{
+    top: 20px;
+    transform: none;
+}
+.consult--form__label.label__obra span{
+    left: 220px;
+    top: 20px;
+    transform: none;
+}
+.consult--form__label textarea,
+.consult--form__label input{
+    width: 100%;
+    height: 50px;
+    background-color: #f2f2f3;
+    border:none;
+    padding: 0 15px;
+}
+.consult--form__label textarea{
+    height: 150px;  
+    padding-top:20px;
+}
+.consult--product__image img{
+    max-width: 200px;
+}
+.consult--product__button{
+    text-align:right;
+    width: 100%;
+    position: relative;
+    height: 50px;
+}
+.btn__green{
+    width:300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
