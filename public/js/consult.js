@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const formEvent = form.addEventListener('submit', (event) => {
         event.preventDefault();
         let mail = new FormData(form);
-        mail = JSON.parse(mail);
         sendMail(mail);
     })
 
