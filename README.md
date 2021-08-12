@@ -12,7 +12,7 @@ Para levantar el proyecto local:
 
 1. Descarga del repo
 
-2. Instalar módulos en el /website
+2. Instalar módulos en el /website 
 
     ```
     npm i
