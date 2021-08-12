@@ -15,16 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //Form send functions
-    const form = document.getElementById("contactform"); 
+    const form = document.getElementById('contactform'); 
 
-    const formEvent = form.addEventListener("submit", (event) => {
+    const formEvent = form.addEventListener('submit', (event) => {
         event.preventDefault();
         let mail = new FormData(form);
         sendMail(mail);
     })
 
     const sendMail = (mail) => {
-        fetch("https://tiendajota.herokuapp.com/send", {
+        fetch('https://tiendajota.herokuapp.com/send', {
             method: "post", //2.
             body: mail, //3.
         

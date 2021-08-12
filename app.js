@@ -229,7 +229,7 @@ transporter.verify(function (error, success) {
     }
 });
 
-app.post("/send", (req, res) => {
+app.post('/send', (req, res) => {
     //1.
     let form = new multiparty.Form();
     let data = {};
