@@ -13,12 +13,12 @@ app.set('view engine', 'ejs');
 app.use(cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, 'public')))
 
-// if(process.env.NODE_ENV === 'production'){
-//     const path  =  require('path');
-//     app.get('/*',(req,res)=>{
-//         res.sendfile(path.resolve(__dirname,'client','build','index.html'))
-//     })
-// }
+if(process.env.NODE_ENV === 'production'){
+    const path  =  require('path');
+    app.get('/*',(req,res)=>{
+        res.sendfile(path.resolve(__dirname,'client','build','index.html'))
+    })
+}
 
 //Separamos los array de dataSite en los hijos
 let products = dataSite[0].products,
