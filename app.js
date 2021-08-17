@@ -14,6 +14,13 @@ app.set('view engine', 'ejs');
 app.use(cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, 'public')))
 
+if(process.env.NODE_ENV === 'production'){
+    const path  =  require('path');
+    app.get('/*',(req,res)=>{
+        res.sendfile(path.resolve(__dirname,'client','build','index.html'))
+    })
+}
+
 //Separamos los array de dataSite en los hijos
 let products = dataSite[0].products,
     navigator = dataSite[0].navigator,
@@ -193,6 +200,8 @@ app.get('/papel/:id', (req, res)=>{
 });
 //ENDPOINT PRODUCTO PAPEL
 app.get('/consulta/:id', (req, res)=>{
+    res.sendFile(process.cwd() + "/");
+
     const _id = req.params.id;
     let product;
     for (let i = 0; i < products.length; i++) {
@@ -260,7 +269,11 @@ app.post('/send', (req, res) => {
         });
     });
 });
-
+//Index page (static HTML)
+app.route("/").get(function (req, res) {
+    res.sendFile(process.cwd() + "/public/index.html");
+  });
+  
 app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
 });
