@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require("cors");
 const nodemailer = require("nodemailer");
 const multiparty = require("multiparty");
 require("dotenv").config();
+const cors = require('cors');
 const path = require('path');
 const dataSite = require('./utils/dataSite.js');
 const app = express();
@@ -10,6 +12,7 @@ const port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, 'public')))
 
 //Separamos los array de dataSite en los hijos
@@ -233,31 +236,31 @@ app.post('/send', (req, res) => {
     let form = new multiparty.Form();
     let data = {};
     form.parse(req, function (err, fields) {
-      console.log(fields);
-      Object.keys(fields).forEach(function (property) {
+        console.log(fields);
+        Object.keys(fields).forEach(function (property) {
         data[property] = fields[property].toString();
-      });
-  
-      //2. You can configure the object however you want
-      const mail = {
+        });
+
+        //2. You can configure the object however you want
+        const mail = {
         from: data.name,
         to: process.env.EMAIL,
         //subject: data.subject,
         subjet: 'Mail desde la web Jota Tienda',
         text: `${data.name} <${data.email}> <${data.phone}> \n${data.consult} \n${data.productId} \n${data.productName} \n${data.productImage}`,
-      };
-  
-      //3.
-      transporter.sendMail(mail, (err, data) => {
+        };
+
+        //3.
+        transporter.sendMail(mail, (err, data) => {
         if (err) {
-          console.log(err);
-          res.status(500).send("Something went wrong.");
+            console.log(err);
+            res.status(500).send("Something went wrong.");
         } else {
-          res.status(200).send("Email successfully sent to recipient!");
+            res.status(200).send("Email successfully sent to recipient!");
         }
-      });
+        });
     });
-  });
+});
 
 app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
