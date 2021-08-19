@@ -1,5 +1,3 @@
-const mailer = require('../../templates/signup-mail.js');
-
 document.addEventListener('DOMContentLoaded', function () {
     //Labels focus animation 
     let $labelsForm = document.querySelectorAll('.consult--form__label .form--input');
@@ -24,8 +22,17 @@ document.addEventListener('DOMContentLoaded', function () {
         let mail = new FormData(form);
         let strigMail = JSON.stringify(mail);
 
-        mailer.enviarmail(strigMail);
+        sendMail(strigMail);
     })
 
+    const sendMail = (mail) => {
+        fetch('https://tiendajota.herokuapp.com/send', {
+            method: "post", //2.
+            body: mail, //3.
+        
+        }).then((response) => {
+            return response.json();
+        });
+    };
 
 }, false);
