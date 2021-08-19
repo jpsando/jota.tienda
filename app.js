@@ -271,10 +271,6 @@ app.post('/send', (req, res) => {
         });
     });
 });
-//Index page (static HTML)
-app.route("/").get(function (req, res) {
-    res.sendFile(process.cwd() + "/public/index.html");
-  });
   
 app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
