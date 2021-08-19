@@ -1,8 +1,4 @@
 const express = require('express');
-const nodemailer = require("nodemailer");
-const multiparty = require("multiparty");
-require("dotenv").config();
-const cors = require('cors');
 const path = require('path');
 const dataSite = require('./utils/dataSite.js');
 const app = express();
@@ -11,15 +7,7 @@ const port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(cors({ origin: "*" }));
-app.use(express.static(path.join(__dirname, 'public')))
-
-// if(process.env.NODE_ENV === 'production'){
-//     const path  =  require('path');
-//     app.get('/*',(req,res)=>{
-//         res.sendfile(path.resolve(__dirname,'client','build','index.html'))
-//     })
-// }
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Separamos los array de dataSite en los hijos
 let products = dataSite[0].products,
@@ -204,7 +192,7 @@ app.get('/consulta/:id', (req, res)=>{
     const _id = req.params.id;
     let product;
 
-    res.sendFile(process.cwd() + "/consulta/"+_id);
+    //res.sendFile(process.cwd() + "/consulta/"+_id);
 
     for (let i = 0; i < products.length; i++) {
         if(products[i].id == _id) product = products[i];
@@ -225,54 +213,7 @@ app.get('/consulta/:id', (req, res)=>{
     }
 });
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASS,
-    },
-  });
-transporter.verify(function (error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Server is ready to take our messages");
-    }
-});
 
-app.post('/send', (req, res) => {
-    //1.
-    let form = new multiparty.Form();
-    let data = {};
-    form.parse(req, function (err, fields) {
-        console.log(fields);
-        Object.keys(fields).forEach(function (property) {
-        data[property] = fields[property].toString();
-        });
-
-        //2. You can configure the object however you want
-        const mail = {
-        from: data.name,
-        to: process.env.EMAIL,
-        //subject: data.subject,
-        subjet: 'Mail desde la web Jota Tienda',
-        text: `${data.name} <${data.email}> <${data.phone}> \n${data.consult} \n${data.productId} \n${data.productName} \n${data.productImage}`,
-        };
-
-        //3.
-        transporter.sendMail(mail, (err, data) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send("Something went wrong.");
-        } else {
-            res.status(200).send("Email successfully sent to recipient!");
-        }
-        });
-    });
-});
-
-  
 app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
 });
