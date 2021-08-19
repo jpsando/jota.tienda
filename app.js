@@ -242,7 +242,6 @@ transporter.verify(function (error, success) {
 });
 
 app.post('/send', (req, res) => {
-    req.setTimeout(0) // no timeout
     //1.
     let form = new multiparty.Form();
     let data = {};
@@ -253,12 +252,20 @@ app.post('/send', (req, res) => {
         });
 
         //2. You can configure the object however you want
+
+        const message = `${data.name} te envio una consulta!
+         \n Podes contactarle a ${data.email} o ${data.phone}. 
+         \n${data.consult ? '' : data.consult} 
+         \n El ID del producto que le interesa es: ${data.productId} 
+         \n El nobre del producto que le interesa es: ${data.productName} 
+         \n La imagen del producto que le interesa es: ${data.productImage}`;
+
         const mail = {
-        from: data.name,
+        from: data.email,
         to: process.env.EMAIL,
         //subject: data.subject,
-        subjet: 'Mail desde la web Jota Tienda',
-        text: `${data.name} <${data.email}> <${data.phone}> \n${data.consult} \n${data.productId} \n${data.productName} \n${data.productImage}`,
+        subject: 'Mail desde la web Jota Tienda',
+        text: message,
         };
 
         //3.
