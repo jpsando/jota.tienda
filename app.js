@@ -255,7 +255,7 @@ app.post('/send', (req, res) => {
 
         const message = `${data.name} te envio una consulta!
          \n Podes contactarle a ${data.email} o ${data.phone}. 
-         \n${data.consult ? '' : data.consult} 
+         \n${!data.consult ? '' : data.consult} 
          \n El ID del producto que le interesa es: ${data.productId} 
          \n El nobre del producto que le interesa es: ${data.productName} 
          \n La imagen del producto que le interesa es: ${data.productImage}`;
