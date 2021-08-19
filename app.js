@@ -242,6 +242,7 @@ transporter.verify(function (error, success) {
 });
 
 app.post('/send', (req, res) => {
+    req.setTimeout(0) // no timeout
     //1.
     let form = new multiparty.Form();
     let data = {};

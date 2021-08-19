@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     const sendMail = (mail) => {
-        fetch('https://tiendajota.herokuapp.com/send', {
+        fetch('http://localhost:3000/send', {
             method: "post", //2.
             body: mail, //3.
         
