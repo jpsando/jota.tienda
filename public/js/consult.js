@@ -61,6 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
+}, false);
+
+
     //1.
     let form = new multiparty.Form();
     let data = {};
@@ -89,5 +93,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         });
     });
-
-}, false);
