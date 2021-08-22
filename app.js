@@ -253,19 +253,14 @@ app.post('/send', (req, res) => {
 
         //2. You can configure the object however you want
 
-        const message = `${data.name} te envio una consulta!
-         \n Podes contactarle a ${data.email} o ${data.phone}. 
-         \n${!data.consult ? '' : data.consult} 
-         \n El ID del producto que le interesa es: ${data.productId} 
-         \n El nobre del producto que le interesa es: ${data.productName} 
-         \n La imagen del producto que le interesa es: ${data.productImage}`;
+        const message = `${data.name} te envio una consulta!\nPodes contactarle a ${data.email} o ${data.phone}.\n${!data.consult ? '' : data.consult} \nEl ID del producto que le interesa es: ${data.productId} \nEl nobre del producto que le interesa es: ${data.productName} \nLa imagen del producto que le interesa es: ${data.productImage}`;
 
         const mail = {
-        from: data.email,
-        to: process.env.EMAIL,
-        //subject: data.subject,
-        subject: 'Mail desde la web Jota Tienda',
-        text: message,
+            from: data.email,
+            to: process.env.EMAIL,
+            //subject: data.subject,
+            subject: 'Mail desde la web Jota Tienda',
+            text: message,
         };
 
         //3.

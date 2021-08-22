@@ -45,18 +45,19 @@
                         <div id="carouselPapel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <%
-                                for (let i = 0; i < 6; i++) { 
-                                    if(i == 0 || i == 3 ){
+                                let iPapel;
+                                productsPapelHome.forEach(productPapel => {
+                                    if(iPapel == 0 || iPapel == 3 ){
                                 %>
-                                <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                                <div class="carousel-item <% if(iPapel==0){ %>active<% } %>">
                                     <div class="row">
                                 <%
                                     }
-                                    if ( productsPapelHome[i] ){
+                                    if ( productPapel ){
                                 %>
                                         <div class="col-4">
-                                            <a href="/<%= productsPapelHome[i].category %>/<%= productsPapelHome[i].id %>" title="<%= productsPapelHome[i].name %>">
-                                                <img src="<%= productsPapelHome[i].imageHome %>" class="d-block w-100" alt="<%= productsPapelHome[i].description %>">
+                                            <a href="/<%= productPapel.category %>/<%= productPapel.id %>" title="<%= productPapel.name %>">
+                                                <img src="<%= productPapel.imageHome %>" class="d-block w-100" alt="<%= productPapel.description %>">
                                             </a>
                                         </div>
                                 <%
@@ -67,7 +68,8 @@
                                 </div>
                                 <%
                                     }
-                                } 
+                                    iPapel ++;
+                                });
                                 %>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselPapel" data-bs-slide="prev">
@@ -91,17 +93,19 @@
                     <div class="col-md-7 module__list">
                         <div class="row">
                             <%
-                            for (let i = 0; i < 6; i++) { 
-                                if ( productsTextilHome[i] ){
+                            let iTextil;
+                            productsTextilHome.forEach(productTextil => {
+                                if ( productTextil ){
                             %>
                             <div class="col-md-4">
-                                <a href="/<%= productsTextilHome[i].category %>/<%= productsTextilHome[i].id %>" title="<%= productsTextilHome[i].name %>">
-                                    <img src="<%= productsTextilHome[i].imageHome %>" alt="<%= productsTextilHome[i].description %>">
+                                <a href="/<%= productTextil.category %>/<%= productTextil.id %>" title="<%= productTextil.name %>">
+                                    <img src="<%= productTextil.imageHome %>" alt="<%= productTextil.description %>">
                                 </a>
                             </div>
                             <%
                                 }
-                            }
+                                iTextil ++;
+                            });
                             %>
                         </div>
                     </div>
@@ -129,29 +133,32 @@
                         <div id="carouselDigital" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <%
-                                for (let i = 0; i < 6; i++) { 
-                                    if(i == 0 || i == 3 ){
+                                let iDigital = 0;
+                                productsDigitalHome.forEach(productDigital => {
+                                    if(iDigital == 0 || iDigital == 3 ){
                                 %>
-                                <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                                <div class="carousel-item <% if(iDigital==0){ %>active<% } %>">
                                     <div class="row">
                                 <%
                                     }
-                                    if ( productsDigitalHome[i] ){
+                                    if ( productDigital ){
                                 %>
                                         <div class="col-4">
-                                            <a href="/<%= productsDigitalHome[i].category %>/<%= productsDigitalHome[i].id %>" title="<%= productsDigitalHome[i].name %>">
-                                                <img src="<%= productsDigitalHome[i].imageHome %>" class="d-block w-100" alt="<%= productsDigitalHome[i].description %>">
+                                            <a href="/<%= productDigital.category %>/<%= productDigital.id %>" title="<%= productDigital.name %>">
+                                                <img src="<%= productDigital.imageHome %>" class="d-block w-100" alt="<%= productDigital.description %>">
                                             </a>
                                         </div>
                                 <%
                                     }
-                                    if(i == 2 || i == 5){
+                                    if(iDigital == 2 || iDigital == 5){
                                 %>
                                     </div>
                                 </div>
                                 <%
                                     }
-                                } 
+
+                                    iDigital ++;
+                                });
                                 %>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselDigital" data-bs-slide="prev">

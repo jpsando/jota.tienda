@@ -34,23 +34,23 @@
             <div class="container">
                 <div class="row">
                         <%
-                        for (let i = 0; i < products.length; i++) { 
+                        products.forEach(product => {
                         %>
                         <article class="col-md-3 product">
                             <figure class="product__figure">
-                                <a href="/<%= products[i].category %>/<%= products[i].id %>" title="<%= products[i].name %>">
-                                    <img src="<%= products[i].imageSumario %>" class="d-block w-100" alt="<%= products[i].name %>">
+                                <a href="/<%= product.category %>/<%= product.id %>" title="<%= product.name %>">
+                                    <img src="<%= product.imageSumario %>" class="d-block w-100" alt="<%= product.name %>">
                                 </a>
                             </figure>
                             <h1 class="product__title">
-                                <a href="/<%= products[i].category %>/<%= products[i].id %>" title="<%= products[i].name %>">
-                                    <%= products[i].name %>
+                                <a href="/<%= product.category %>/<%= product.id %>" title="<%= product.name %>">
+                                    <%= product.name %>
                                 </a>
                             </h1>
-                            <p class="product__info"><%= products[i].size %></p>
+                            <p class="product__info"><%= product.size %></p>
                         </article>
                         <%
-                        }
+                        });
                         %>
                 </div>
             </div>
