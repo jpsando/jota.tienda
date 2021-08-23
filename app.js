@@ -60,7 +60,7 @@ app.get('/:category', (req, res)=>{
                     error
                 })
             }
-    
+            
             const JSONBody = JSON.parse(data);
             const productsTextil = JSONBody.filter((product) => product.category === 'textil');    
             

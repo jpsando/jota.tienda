@@ -10,13 +10,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <%
-              for (let i = 0; i < navigator.length; i++) {
+              navigator.forEach(e => {
               %>
               <li class="nav-item">
-                <a class="nav-link <%= navigator[i].class %>" href="<%= navigator[i].href %>" title="Ir a <%= navigator[i].name %>"><%= navigator[i].name %></a>
+                <a class="nav-link <%= e.class %>" href="<%= e.href %>" target="<%= e.target %>" title="Ir a <%= e.name %>"><%= e.name %></a>
               </li>
-              <%
-              }
+              <% 
+              });
               %>
             </ul>
           </div>
