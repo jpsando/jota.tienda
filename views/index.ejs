@@ -45,7 +45,7 @@
                         <div id="carouselPapel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <%
-                                let iPapel;
+                                let iPapel = 0;
                                 productsPapelHome.forEach(productPapel => {
                                     if(iPapel == 0 || iPapel == 3 ){
                                 %>
@@ -62,7 +62,7 @@
                                         </div>
                                 <%
                                     }
-                                    if(i == 2 || i == 5){
+                                    if(iPapel == 2 || iPapel == 5){
                                 %>
                                     </div>
                                 </div>
