@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require('cors');
 const path = require('path');
 const dataSite = require('./utils/dataSite.js');
+const productsData = require('./utils/products.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -14,130 +15,134 @@ app.set('view engine', 'ejs');
 app.use(cors({ origin: "*" }));
 app.use(express.static(path.join(__dirname, 'public')))
 
-// if(process.env.NODE_ENV === 'production'){
-//     const path  =  require('path');
-//     app.get('/*',(req,res)=>{
-//         res.sendfile(path.resolve(__dirname,'client','build','index.html'))
-//     })
-// }
 
 //Separamos los array de dataSite en los hijos
-let products = dataSite[0].products,
-    navigator = dataSite[0].navigator,
+let navigator = dataSite[0].navigator,
     home = dataSite[0].home,
     footer = dataSite[0].footer;
 
-//Separamos los array de los productos por categoria
-let productsTextil = [],
-    productsPapel = [],
-    productsDigital = [];
-
-for (let i = 0; i < products.length; i++) {
-    if (products[i].category === 'textil') {
-        productsTextil.push(products[i])
-    }
-}
-for (let i = 0; i < products.length; i++) {
-    if (products[i].category === 'papel') {
-        productsPapel.push(products[i])
-    }
-}
-for (let i = 0; i < products.length; i++) {
-    if (products[i].category === 'digital') {
-        productsDigital.push(products[i])
-    }
-}
-//Separamos los productos que sean "destacados home"
-let productsTextilHome = [],
-    productsPapelHome = [],
-    productsDigitalHome = [];
-
-for (let i = 0; i < productsTextil.length; i++) {
-    if (productsTextil[i].destacado) {
-        productsTextilHome.push(productsTextil[i])
-    }
-}
-for (let i = 0; i < productsPapel.length; i++) {
-    if (productsPapel[i].destacado) {
-        productsPapelHome.push(productsPapel[i])
-    }
-}
-for (let i = 0; i < productsDigital.length; i++) {
-    if (productsDigital[i].destacado) {
-        productsDigitalHome.push(productsDigital[i])
-    }
-}
-
+//ENDPOINT HOME
 app.get('', (req, res)=>{
-    res.render('index',{
-        title: 'Jota Tienda',
-        template: 'home',
-        navigator,
-        footer,
-        home,
-        productsTextilHome,
-        productsPapelHome,
-        productsDigitalHome
-    });
+
+    productsData.getAllProducts((error, data)=>{
+        if(error){
+            return res.send({
+                error
+            })
+        }
+
+        const JSONBody = JSON.parse(data);
+
+        const productsTextilHome = JSONBody.filter((product) => product.category === 'textil' && product.destacado);
+        const productsPapelHome = JSONBody.filter((product) => product.category === 'papel' && product.destacado);
+        const productsDigitalHome = JSONBody.filter((product) => product.category === 'digital' && product.destacado);
+        
+        res.render('index',{
+            title: 'Jota Tienda',
+            template: 'home',
+            navigator,
+            footer,
+            home,
+            productsTextilHome,
+            productsPapelHome,
+            productsDigitalHome
+        });
+    })
 });
 
+//ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
 app.get('/:category', (req, res)=>{
     const _category = req.params.category;
     if(_category == 'textil'){
-        res.render('pages/summary',{
-            title: 'Jota Tienda | Textil',
-            template: 'section',
-            sectionTitle: 'Textil',
-            sectionDescription: 'Les doy la bienvenida a mi espacio de creación. Todas las obras acá compartidas fueron hechas de manera artesanal.',
-            page: "textil",
-            navigator,
-            footer,
-            products: productsTextil
-        });
+        productsData.getAllProducts((error, data)=>{
+            if(error){
+                return res.send({
+                    error
+                })
+            }
+    
+            const JSONBody = JSON.parse(data);
+            const productsTextil = JSONBody.filter((product) => product.category === 'textil');    
+            
+            res.render('pages/summary',{
+                title: 'Jota Tienda | Textil',
+                template: 'section',
+                sectionTitle: 'Textil',
+                sectionDescription: 'Les doy la bienvenida a mi espacio de creación. Todas las obras acá compartidas fueron hechas de manera artesanal.',
+                page: "textil",
+                navigator,
+                footer,
+                products: productsTextil
+            });
+        })
     }else if(_category == 'papel'){
-        res.render('pages/summary',{
-            title: 'Jota Tienda | Papel',
-            template: 'section',
-            sectionTitle: 'Papel',
-            sectionDescription: 'Grabados, serigrafías, collages e ilustraciones a mano alzada.',
-            page: "papel",
-            navigator,
-            footer,
-            products: productsPapel
-        });
+        productsData.getAllProducts((error, data)=>{
+            if(error){
+                return res.send({
+                    error
+                })
+            }
+    
+            const JSONBody = JSON.parse(data);
+            const productsPapel = JSONBody.filter((product) => product.category === 'papel');   
+            
+            res.render('pages/summary',{
+                title: 'Jota Tienda | Papel',
+                template: 'section',
+                sectionTitle: 'Papel',
+                sectionDescription: 'Grabados, serigrafías, collages e ilustraciones a mano alzada.',
+                page: "papel",
+                navigator,
+                footer,
+                products: productsPapel
+            });
+        })
     }else if(_category == 'digital'){
-        res.render('pages/summary',{
-            title: 'Jota Tienda | Digital',
-            template: 'section',
-            sectionTitle: 'Digital',
-            sectionDescription: 'Les doy la bienvenida a mi espacio de creación. Todas las obras acá compartidas fueron hechas de manera digital.',
-            page: "digital",
-            navigator,
-            footer,
-            products: productsDigital
-        });
+
+        productsData.getAllProducts((error, data)=>{
+            if(error){
+                return res.send({
+                    error
+                })
+            }
+    
+            const JSONBody = JSON.parse(data);
+            const productsDigital = JSONBody.filter((product) => product.category === 'digital');   
+            res.render('pages/summary',{
+                title: 'Jota Tienda | Digital',
+                template: 'section',
+                sectionTitle: 'Digital',
+                sectionDescription: 'Les doy la bienvenida a mi espacio de creación. Todas las obras acá compartidas fueron hechas de manera digital.',
+                page: "digital",
+                navigator,
+                footer,
+                products: productsDigital
+            });
+        })
     }else{
         res.send('La pagina solicitada no existe.');
     }
 });
 
-//ENDPOINT PRODUCTO 
+//ENDPOINT FICHA PRODUCTO 
 app.get('/:category/:id', (req, res)=>{
     const _id = req.params.id;
     const _category = req.params.category;
-    let product,
-        products;
-    if (_category == 'textil'){
-        products = productsTextil;
-    }else if(_category == 'papel'){
-        products = productsPapel;
-    }else if(_category == 'digital'){
-        products = productsDigital;
-    }
-    products.forEach(e => {
-        if(e.id == _id) product = e;
-    });
-    if(product){
+    let product;
+   
+    productsData.getAllProducts((error, data)=>{
+        if(error){
+            return res.send({
+                error
+            })
+        }
+
+        const products = JSON.parse(data);
+        
+        products.forEach(e => {
+            if(e.id == _id) product = e;
+        }); 
+
         res.render('pages/product',{
             title: `Jota Tienda | ${product.name}`,
             template: 'product',
@@ -152,23 +157,28 @@ app.get('/:category/:id', (req, res)=>{
             footer,
             navigator
         });
-    }else{
-        res.send('El producto no existe.');
-    }
+    })
 });
 
-//ENDPOINT PRODUCTO PAPEL
+//ENDPOINT CONSULTA PRODUCTO
 app.get('/consulta/:id', (req, res)=>{
 
     const _id = req.params.id;
     let product;
 
-    res.sendFile(process.cwd() + "/consulta/"+_id);
+    productsData.getAllProducts((error, data)=>{
+        if(error){
+            return res.send({
+                error
+            })
+        }
 
-    for (let i = 0; i < products.length; i++) {
-        if(products[i].id == _id) product = products[i];
-    }
-    if(product){
+        const products = JSON.parse(data);
+        
+        products.forEach(e => {
+            if(e.id == _id) product = e;
+        });
+
         res.render('pages/consult',{
             title: `Jota Tienda | Consulta por ${product.name}`,
             template: 'consult',
@@ -179,9 +189,7 @@ app.get('/consulta/:id', (req, res)=>{
             footer,
             navigator
         });
-    }else{
-        res.send('El producto no existe.');
-    }
+    })
 });
 
 const transporter = nodemailer.createTransport({
