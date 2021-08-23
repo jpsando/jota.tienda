@@ -124,7 +124,7 @@ app.get('/:category', (req, res)=>{
     }
 });
 
-//ENDPOINT FICHA PRODUCTO 
+//ENDPOINT FICHA PRODUCTO y CONSULTAR PRODUCTO
 app.get('/:category/:id', (req, res)=>{
     const _id = req.params.id;
     const _category = req.params.category;
@@ -142,55 +142,36 @@ app.get('/:category/:id', (req, res)=>{
         products.forEach(e => {
             if(e.id == _id) product = e;
         }); 
-
-        res.render('pages/product',{
-            title: `Jota Tienda | ${product.name}`,
-            template: 'product',
-            productTitle: product.name,
-            productImages: product.images,
-            productDescription: product.description,
-            productInfo: product.info,
-            productSize: product.size,
-            productDate: product.date,
-            productId: product.id,
-            page: "product",
-            footer,
-            navigator
-        });
-    })
-});
-
-//ENDPOINT CONSULTA PRODUCTO
-app.get('/consulta/:id', (req, res)=>{
-
-    const _id = req.params.id;
-    let product;
-
-    productsData.getAllProducts((error, data)=>{
-        if(error){
-            return res.send({
-                error
-            })
+        if (_category == 'consulta'){
+            res.render('pages/consult',{
+                title: `Jota Tienda | Consulta por ${product.name}`,
+                template: 'consult',
+                productName: product.name,
+                productImage: product.images[0],
+                productId: product.id,
+                page: "consult",
+                footer,
+                navigator
+            });
+        }else{
+            res.render('pages/product',{
+                title: `Jota Tienda | ${product.name}`,
+                template: 'product',
+                productTitle: product.name,
+                productImages: product.images,
+                productDescription: product.description,
+                productInfo: product.info,
+                productSize: product.size,
+                productDate: product.date,
+                productId: product.id,
+                page: "product",
+                footer,
+                navigator
+            });
         }
-
-        const products = JSON.parse(data);
-        
-        products.forEach(e => {
-            if(e.id == _id) product = e;
-        });
-
-        res.render('pages/consult',{
-            title: `Jota Tienda | Consulta por ${product.name}`,
-            template: 'consult',
-            productName: product.name,
-            productImage: product.images[0],
-            productId: product.id,
-            page: "consult",
-            footer,
-            navigator
-        });
     })
 });
+
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -199,7 +180,7 @@ const transporter = nodemailer.createTransport({
       user: process.env.EMAIL,
       pass: process.env.PASS,
     },
-  });
+});
 transporter.verify(function (error, success) {
     if (error) {
       console.log(error);

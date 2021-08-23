@@ -397,7 +397,7 @@
         "info": "Cada tapiz esta estampado a mano mediante la técnica de grabado. Cada estampa proviene de un taco de madera o linóleo previamente tallado a mano. Este taco es luego entintado y pasado por una prensa de grabado que genera la presión suficiente para que se imprima la imagen sobre la tela. El proceso es enteramente artesanal y es por eso que cada tapiz es único e irrepetible. El textil utilizado es la tela 'cabeza de toro', una lona cruda y pesada. Se recomienda lavar a mano para mantener los colores por más tiempo. ",
         "size": "Medidas a convenir. Este patrón puede ser replicado a cualquier tamaño, así que podés decirnos vos cual es tu medida ideal.",
         "date": 2021,
-        "destacado": false,
+        "destacado": true,
         "imageHome": "/img/textil/home/TAPIZ_ZICATELA.jpg",
         "imageSumario": "/img/textil/sumario/TAPIZ_ZICATELA.jpg",
         "images": ["/img/textil/ficha/ZICATELA.jpg", "/img/textil/ficha/ZICATELA2.jpg"]
