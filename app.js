@@ -172,7 +172,6 @@ app.get('/:category/:id', (req, res)=>{
     })
 });
 
-
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
