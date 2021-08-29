@@ -88,7 +88,8 @@ app.post('/send', async (req, res) => {
         template: 'consult',
         page: "consult",
         footer,
-        navigator
+        navigator,
+        infoSend: info
     });
 });
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
