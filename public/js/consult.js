@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //Form send functions
+/**
     const form = document.getElementById('contactform'); 
 
     const formEvent = form.addEventListener('submit', (event) => {
@@ -24,25 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         sendMail(strigMail);
     })
-    leer = async () => {
-        try {
-            
-            const data = await fs.promises.readFile(this.file_name, 'utf-8');
-            const dataJSON = JSON.parse(data);
-    
-            if (dataJSON === 0){
-                return {
-                    error:'No se pudo leer el archivo'
-                }
-            }
-            return dataJSON
-    
-        } catch (error) {
-            return {
-                error:'No se pudo leer el archivo'
-            }
-        }
-    }
+
     const sendMail = (mail) => {
         fetch('https://tiendajota.herokuapp.com/send', {
             method: "post", //2.
@@ -54,5 +37,5 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error("ERROR: ", err.message)
         });
     };
-
+ */
 }, false);
