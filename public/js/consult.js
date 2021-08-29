@@ -14,28 +14,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    //Form send functions
-/**
-    const form = document.getElementById('contactform'); 
-
-    const formEvent = form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        let mail = new FormData(form);
-        let strigMail = JSON.stringify(mail);
-
-        sendMail(strigMail);
-    })
-
-    const sendMail = (mail) => {
-        fetch('https://tiendajota.herokuapp.com/send', {
-            method: "post", //2.
-            body: mail, //3.
-        
-        }).then((response) => {
-            return response.json();
-        }).catch(err => {
-            console.error("ERROR: ", err.message)
-        });
-    };
- */
 }, false);
