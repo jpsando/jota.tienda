@@ -24,17 +24,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         sendMail(strigMail);
     })
-
-    const sendMail = (mail) => {
-        fetch('https://tiendajota.herokuapp.com/send', {
-            method: "post", //2.
-            body: mail, //3.
-        
-        }).then((response) => {
-            return response.json();
-        }).catch(err => {
-            console.error("ERROR: ", err.message)
-        });
+    
+    const sendMail = async (mail) => {
+        try {
+            fetch('https://tiendajota.herokuapp.com/send', {
+                method: "post", //2.
+                body: mail, //3.
+            
+            }).then((response) => {
+                return response.json();
+            }).catch(err => {
+                console.error("ERROR: ", err.message)
+            });
+        } catch (error) {
+            return {
+                error:'No se pudo realizar el envio'
+            }
+        }
     };
 
 }, false);
