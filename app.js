@@ -81,7 +81,7 @@ app.post('/send', async (req, res) => {
         html: contentHTML
     });
 
-    //console.log('Mensaje enviado', info.messageId);
+    console.log(info);
 
     res.render('pages/consult-send',{
         title: `Jota Tienda | Consulta enviada correctamente`,
