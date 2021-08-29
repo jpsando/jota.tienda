@@ -119,8 +119,6 @@ app.get('/:category', (req, res)=>{
                 products: productsDigital
             });
         })
-    }else{
-        res.send('La pagina solicitada no existe.');
     }
 });
 
