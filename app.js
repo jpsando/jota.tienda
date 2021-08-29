@@ -77,7 +77,7 @@ app.post('/send', async (req, res) => {
    const info = await transporter.sendMail({
         from: process.env.EMAIL,
         to: process.env.EMAIL,
-        subjet: 'Email desde Tienda Jota',
+        subject: 'Email desde Tienda Jota',
         html: contentHTML
     });
 
