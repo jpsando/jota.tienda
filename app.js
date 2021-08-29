@@ -172,23 +172,24 @@ app.get('/:category/:id', (req, res)=>{
     })
 });
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASS,
-    },
-});
-transporter.verify(function (error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Server is ready to take our messages");
-    }
-});
-
 app.post('/send', (req, res) => {
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASS,
+        },
+    });
+    transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Server is ready to take our messages");
+        }
+    });
+
     //1.
     let form = new multiparty.Form();
     let data = {};
