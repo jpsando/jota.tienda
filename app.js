@@ -1,8 +1,7 @@
 const express = require('express');
+
 const nodemailer = require("nodemailer");
-const multiparty = require("multiparty");
-require("dotenv").config();
-const cors = require('cors');
+
 const path = require('path');
 const dataSite = require('./utils/dataSite.js');
 const productsData = require('./utils/products.js');
@@ -11,9 +10,6 @@ const port = process.env.PORT || 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-app.use(cors({ origin: "*" }));
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.urlencoded({extended: false}))
 

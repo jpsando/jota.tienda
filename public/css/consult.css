@@ -64,6 +64,11 @@
     position: relative;
     height: 50px;
 }
+.consult-ok{
+    min-height: 400px;
+    padding: 100px 0;
+    text-align: center;
+}
 .btn__green{
     width:300px;
     position: absolute;
