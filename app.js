@@ -75,11 +75,11 @@ app.post('/send', async (req, res) => {
             <li>Nombre: ${name}</li>
             <li>Telefono: ${phone}</li>
             <li>Email: ${email}</li>
-            <li>Consulta: ${consult}</li>
             <li>ID del producto elegido: ${productId}</li>
             <li>Nombre del producto elegido: ${productName}</li>
             <li>Imagen del producto elegido: ${productImage}</li>
         </ul>
+        <p>Consulta: ${consult}</p>
     `;
 
    const transporter = nodemailer.createTransport({
@@ -137,7 +137,7 @@ app.post('/send', async (req, res) => {
     // });
 });
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
-app.get('/categoria/:category', (req, res)=>{
+app.get('/:category', (req, res)=>{
     const _category = req.params.category;
     if(_category == 'textil'){
         productsData.getAllProducts((error, data)=>{
@@ -211,7 +211,7 @@ app.get('/categoria/:category', (req, res)=>{
 });
 
 //ENDPOINT FICHA PRODUCTO y CONSULTAR PRODUCTO
-app.get('/ficha/:category/:id', (req, res)=>{
+app.get('/:category/:id', (req, res)=>{
     const _id = req.params.id;
     const _category = req.params.category;
     let product;
