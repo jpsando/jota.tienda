@@ -50,6 +50,56 @@ app.get('', (req, res)=>{
     })
 });
 
+app.post('/send', (req, res) => {
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASS,
+        },
+    });
+    transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Server is ready to take our messages");
+        }
+    });
+
+    //1.
+    let form = new multiparty.Form();
+    let data = {};
+    form.parse(req, function (err, fields) {
+        console.log(fields);
+        Object.keys(fields).forEach(function (property) {
+        data[property] = fields[property].toString();
+        });
+
+        //2. You can configure the object however you want
+
+        const message = `${data.name} te envio una consulta!\nPodes contactarle a ${data.email} o ${data.phone}.\n${!data.consult ? '' : data.consult} \nEl ID del producto que le interesa es: ${data.productId} \nEl nobre del producto que le interesa es: ${data.productName} \nLa imagen del producto que le interesa es: ${data.productImage}`;
+
+        const mail = {
+            from: data.email,
+            to: process.env.EMAIL,
+            //subject: data.subject,
+            subject: 'Mail desde la web Jota Tienda',
+            text: message,
+        };
+
+        //3.
+        transporter.sendMail(mail, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Something went wrong.");
+        } else {
+            res.status(200).send("Email successfully sent to recipient!");
+        }
+        });
+    });
+});
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
 app.get('/:category', (req, res)=>{
     const _category = req.params.category;
@@ -119,6 +169,8 @@ app.get('/:category', (req, res)=>{
                 products: productsDigital
             });
         })
+    }else{
+        res.send('La pagina solicitada no existe.');
     }
 });
 
@@ -170,56 +222,6 @@ app.get('/:category/:id', (req, res)=>{
     })
 });
 
-app.post('/send', (req, res) => {
-
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASS,
-        },
-    });
-    transporter.verify(function (error, success) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Server is ready to take our messages");
-        }
-    });
-
-    //1.
-    let form = new multiparty.Form();
-    let data = {};
-    form.parse(req, function (err, fields) {
-        console.log(fields);
-        Object.keys(fields).forEach(function (property) {
-        data[property] = fields[property].toString();
-        });
-
-        //2. You can configure the object however you want
-
-        const message = `${data.name} te envio una consulta!\nPodes contactarle a ${data.email} o ${data.phone}.\n${!data.consult ? '' : data.consult} \nEl ID del producto que le interesa es: ${data.productId} \nEl nobre del producto que le interesa es: ${data.productName} \nLa imagen del producto que le interesa es: ${data.productImage}`;
-
-        const mail = {
-            from: data.email,
-            to: process.env.EMAIL,
-            //subject: data.subject,
-            subject: 'Mail desde la web Jota Tienda',
-            text: message,
-        };
-
-        //3.
-        transporter.sendMail(mail, (err, data) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send("Something went wrong.");
-        } else {
-            res.status(200).send("Email successfully sent to recipient!");
-        }
-        });
-    });
-});
   
 app.listen(port, () => {
     console.log("Funcionando en el puerto 3000");
