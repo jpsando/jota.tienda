@@ -50,23 +50,23 @@ app.get('', (req, res)=>{
     })
 });
 
-app.post('/send', (req, res) => {
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASS,
+    },
+});
+transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+});
 
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASS,
-        },
-    });
-    transporter.verify(function (error, success) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Server is ready to take our messages");
-        }
-    });
+app.post('/send', (req, res) => {
 
     //1.
     let form = new multiparty.Form();
@@ -82,7 +82,7 @@ app.post('/send', (req, res) => {
         const message = `${data.name} te envio una consulta!\nPodes contactarle a ${data.email} o ${data.phone}.\n${!data.consult ? '' : data.consult} \nEl ID del producto que le interesa es: ${data.productId} \nEl nobre del producto que le interesa es: ${data.productName} \nLa imagen del producto que le interesa es: ${data.productImage}`;
 
         const mail = {
-            from: data.email,
+            from: process.env.EMAIL,
             to: process.env.EMAIL,
             //subject: data.subject,
             subject: 'Mail desde la web Jota Tienda',
@@ -101,7 +101,7 @@ app.post('/send', (req, res) => {
     });
 });
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
-app.get('/:category', (req, res)=>{
+app.get('/categoria/:category', (req, res)=>{
     const _category = req.params.category;
     if(_category == 'textil'){
         productsData.getAllProducts((error, data)=>{
@@ -175,7 +175,7 @@ app.get('/:category', (req, res)=>{
 });
 
 //ENDPOINT FICHA PRODUCTO y CONSULTAR PRODUCTO
-app.get('/:category/:id', (req, res)=>{
+app.get('/ficha/:category/:id', (req, res)=>{
     const _id = req.params.id;
     const _category = req.params.category;
     let product;
