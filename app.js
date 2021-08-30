@@ -81,18 +81,26 @@ app.post('/send', async (req, res) => {
         html: contentHTML
     }, (err,info) => {
         if (err){
-            console.log(err)
+            
+            res.render('pages/consult-error',{
+                title: `Jota Tienda | Error en el envio`,
+                template: 'consult',
+                page: "consult",
+                footer,
+                navigator
+            });
+            return
         }
-        console.log(info)
+        //console.log(info)
+        res.render('pages/consult-send',{
+            title: `Jota Tienda | Consulta enviada correctamente`,
+            template: 'consult',
+            page: "consult",
+            footer,
+            navigator
+        });
     });
 
-    res.render('pages/consult-send',{
-        title: `Jota Tienda | Consulta enviada correctamente`,
-        template: 'consult',
-        page: "consult",
-        footer,
-        navigator
-    });
 });
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
 app.get('/:category', (req, res)=>{
