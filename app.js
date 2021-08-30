@@ -74,14 +74,34 @@ app.post('/send', async (req, res) => {
         }
     });
 
-   const info = await transporter.sendMail({
-        from: process.env.EMAIL,
-        to: process.env.EMAIL,
-        subject: 'Email desde Tienda Jota',
-        html: contentHTML
-    });
+    const sendAsync = async () => {
+        try {
+            let info = await transporter.sendMail({
+                from: process.env.EMAIL,
+                to: process.env.EMAIL,
+                subject: 'Email desde Tienda Jota',
+                html: contentHTML
+            });
 
-    console.log(info);
+            console.log("1. "+info.response);
+        } catch (error) {
+            res.render('pages/consult-error',{
+                title: `Jota Tienda | Error en el envio`,
+                template: 'consult',
+                page: "consult",
+                footer,
+                navigator,
+                infoSend: info
+            });
+            return {
+                error:'No se pudo enviar la consulta'
+            }
+        }
+    }
+
+
+    console.log(info.response);
+    console.log(sendAsync);
 
     res.render('pages/consult-send',{
         title: `Jota Tienda | Consulta enviada correctamente`,
