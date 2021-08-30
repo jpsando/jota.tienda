@@ -100,7 +100,6 @@ app.post('/send', async (req, res) => {
     }
 
 
-    console.log(info.response);
     console.log(sendAsync);
 
     res.render('pages/consult-send',{
@@ -108,8 +107,7 @@ app.post('/send', async (req, res) => {
         template: 'consult',
         page: "consult",
         footer,
-        navigator,
-        infoSend: info
+        navigator
     });
 });
 //ENDPOINT SUMARIO DE PRODUCTOS POR CATEGORIA
