@@ -79,9 +79,12 @@ app.post('/send', async (req, res) => {
         to: process.env.EMAIL,
         subject: 'Email desde Tienda Jota',
         html: contentHTML
+    }, (err,info) => {
+        if (err){
+            console.log(err)
+        }
+        console.log(info)
     });
-
-    console.log(info.response);
 
     res.render('pages/consult-send',{
         title: `Jota Tienda | Consulta enviada correctamente`,
